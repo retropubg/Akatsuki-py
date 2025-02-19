@@ -1,4 +1,5 @@
 import logging
+import time
 from os import getenv
 from huepy import bad
 from pyromod import Client
@@ -26,7 +27,6 @@ bot_on()
 logging.basicConfig(level=logging.INFO)
 logging.getLogger("httpx").setLevel(logging.CRITICAL)
 
-
 @app.on_callback_query()
 async def warn_user(client: Client, callback_query: CallbackQuery):
     if callback_query.message.reply_to_message.from_user and (
@@ -37,10 +37,8 @@ async def warn_user(client: Client, callback_query: CallbackQuery):
         return
     await callback_query.continue_propagation()
 
-
 @app.on_message(filters.text)
 async def user_ban(client: Client, m: Message):
-
     if not m.from_user:
         return
     if not m.text:
@@ -69,13 +67,7 @@ async def user_ban(client: Client, m: Message):
                 await m.chat.ban_member(user_id)
                 info=db.get_info_user(user_id)
                 await client.send_message(-1002474159521, f"<b>User eliminado: @{info['USERNAME']}</b>")
-
-        #         if not db.is_admin(m.from_user.id):
-        #             return await m.reply(
-        #                 """𝘽𝙤𝙩 𝙪𝙣𝙙𝙚𝙧 𝙈𝙖𝙣𝙩𝙚𝙣𝙞𝙚𝙣𝙘𝙚 ⚠️
-        # 𝙍𝙚𝙖𝙨𝙤𝙣 -» <code>Mantenimiento by @Fucker_504</code>
-        #        """
-        #             )
+    
         user_id = m.from_user.id
         username = m.from_user.username
         db.remove_expireds_users()
@@ -85,6 +77,9 @@ async def user_ban(client: Client, m: Message):
         db.register_user(user_id, username)
         await m.continue_propagation()
 
-
 if __name__ == "__main__":
     app.run()
+    
+    # Mantener el proceso activo
+    while True:
+        time.sleep(60)  # Evita que Railway cierre el contenedor
