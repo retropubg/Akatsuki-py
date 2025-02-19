@@ -233,7 +233,7 @@ def bot_on() -> None:
     |_|\___|_|  \___/| |___/    |_|\___|_|  |___/_| |_|\___|_|    
                      | |                                            
                      |_|                                            
-        '\ '
+        """
         "\033[0m"  # Restablecer los colores al valor por defecto
     )
 
