@@ -214,17 +214,14 @@ def antispam(user: int, limit: int, free_user=False, times: dict = times) -> boo
 
     return False
 
-
 def bot_on() -> None:
-    if os.name == "nt":
-        os.system("cls")  # Limpia la consola en Windows
-    else:
-        os.system("clear")  # Limpia la consola en sistemas Unix
-    
-    # Mensaje en color verde indicando que el bot está activo
+    if shutil.which("clear") and os.name != "nt":
+        os.system("clear")
+    elif shutil.which("cls") and os.name == "nt":
+        os.system("cls")
     print(
-    red(
-        r"""
+        red(
+            r"""
  /$$$$$$$   /$$$$$$  /$$$$$$$$        /$$$$$$  /$$   /$$
 | $$__  $$ /$$__  $$|__  $$__/       /$$__  $$| $$$ | $$
 | $$  \ $$| $$  \ $$   | $$         | $$  \ $$| $$$$| $$
@@ -233,15 +230,9 @@ def bot_on() -> None:
 | $$  \ $$| $$  | $$   | $$         | $$  | $$| $$\  $$$
 | $$$$$$$/|  $$$$$$/   | $$         |  $$$$$$/| $$ \  $$
 |_______/  \______/    |__/          \______/ |__/  \__/
-                                                           
 """
+        )
     )
-)
-
-
-# Llamada a la función
-bot_on()
-
 
 
 def symbol(symbol: str) -> str:
