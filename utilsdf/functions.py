@@ -217,11 +217,12 @@ def antispam(user: int, limit: int, free_user=False, times: dict = times) -> boo
 
 def bot_on() -> None:
     if os.name == "nt":
-        os.system("cls")
+        os.system("cls")  # Limpia la consola en Windows
     else:
-        os.system("clear")
+        os.system("clear")  # Limpia la consola en sistemas Unix
+    
     print(
-        red(
+        colored(
             """
  /$$$$$$$   /$$$$$$  /$$$$$$$$        /$$$$$$  /$$   /$$
 | $$__  $$ /$$__  $$|__  $$__/       /$$__  $$| $$$ | $$
@@ -232,7 +233,8 @@ def bot_on() -> None:
 | $$$$$$$/|  $$$$$$/   | $$         |  $$$$$$/| $$ \  $$
 |_______/  \______/    |__/          \______/ |__/  \__/
                                                            
-"""
+            """,
+            "red"  # Esto aplica el color rojo al texto
         )
     )
 
