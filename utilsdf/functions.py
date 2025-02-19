@@ -217,24 +217,29 @@ def antispam(user: int, limit: int, free_user=False, times: dict = times) -> boo
 
 def bot_on() -> None:
     if os.name == "nt":
-        os.system("cls")
+        os.system("cls")  # Limpia la consola en Windows
     else:
-        os.system("clear")
+        os.system("clear")  # Limpia la consola en sistemas Unix
+    
+    # Mensaje en color verde indicando que el bot está activo
     print(
-        red(
-            """
- /$$$$$$$   /$$$$$$  /$$$$$$$$        /$$$$$$  /$$   /$$
-| $$__  $$ /$$__  $$|__  $$__/       /$$__  $$| $$$ | $$
-| $$  \ $$| $$  \ $$   | $$         | $$  \ $$| $$$$| $$
-| $$$$$$$ | $$  | $$   | $$         | $$  | $$| $$ $$ $$
-| $$__  $$| $$  | $$   | $$         | $$  | $$| $$  $$$$
-| $$  \ $$| $$  | $$   | $$         | $$  | $$| $$\  $$$
-| $$$$$$$/|  $$$$$$/   | $$         |  $$$$$$/| $$ \  $$
-|_______/  \______/    |__/          \______/ |__/  \__/
-                                                           
-"""
-        )
+        "\033[38;5;82m"  # Cambiar a color verde en 256 colores
+        """
+  _______           _        _______          _    _             
+ |__   __|         (_)      |__   __|        | |  | |            
+    | | ___ _ __ ___  ___     | | ___ _ __ ___| |__| | ___ _ __  
+    | |/ _ \ '__/ _ \ \/ __|    | |/ _ \ '__/ __| '_ \ |/ _ \ '__| 
+    | |  __/ | | (_) \ \__ \    | |  __/ |  \__ \ | | |  __/ |    
+    |_|\___|_|  \___/| |___/    |_|\___|_|  |___/_| |_|\___|_|    
+                     | |                                            
+                     |_|                                            
+        """
+        "\033[0m"  # Restablecer los colores al valor por defecto
     )
+
+# Llamada a la función
+bot_on()
+
 
 
 def symbol(symbol: str) -> str:
